@@ -2,6 +2,7 @@
 setxkbmap -layout es &
 # /home/ansgair/display_conf1.sh &
 picom & #--config $HOME/.config/qtile/scripts/picom/picom.comf &
+#feh --bg-fill $HOME/.config/qtile/wallpaper/calavera.jpg -Z $HOME/.config/qtile/wallpaper/command.png &
 nitrogen --restore &
 #   Iconos de sistema.
 udiskie -t &

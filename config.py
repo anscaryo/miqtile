@@ -457,7 +457,7 @@ screens = [
             widget.Clock(
                         foreground=colors[2],
                         background=colors[1],
-                        format="%d/%m/%Y %A %H:%M "
+                        format="%H:%M:%S "
                         ),
             widget.TextBox(
                          font="FontAwesome",

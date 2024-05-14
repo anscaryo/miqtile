@@ -30,7 +30,7 @@ import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
-#from libqtile.command import lazy
+from libqtile.command import lazy
 from libqtile.widget import Spacer
 from libqtile.utils import guess_terminal
 
@@ -190,8 +190,9 @@ keys = [
     #    lazy.layout.toggle_split(),
     #    desc="Toggle between split and unsplit sides of stack",
     #),
-
+#   Aplicaciones:
     Key([mod, "shift"], "Return", lazy.spawn("thunar"), desc="Lanza el administrador de archivos"),
+#    Key([mod], "x", lazy.cmd_spawn("/usr/bin/archlinux-logout"), desc="Lanza el menu para cerrar seison de arcolinux"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Lanza la terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -210,7 +211,7 @@ keys = [
     Key([mod, "shift"], "f", lazy.spawn("firefox"), desc="Lanza el navegador firefox"),
     Key([mod], "b", lazy.spawn("brave"), desc="Lanza el navegador brave"),
     Key([mod, "shift"], "c", lazy.spawn("code"), desc="Lanza Visual Studio Code"),
-
+    Key([mod, "shift"], "s", lazy.spawn("pavucontrol"), desc="Lanza aplicación para controlar el sonido")
     
 ]
 
@@ -234,11 +235,11 @@ for vt in range(1, 8):
 
 __groups = {
         1:Group("", layout="monadtall"),
-        2:Group("", layout="monadwide", matches=[Match(wm_class=re.compile(r"^(firefox|brave)$"))]),
+        2:Group("", layout="monadwide"),
         3:Group("󰨞", layout="monadwide", matches=[Match(wm_class=re.compile(r"^(Code)$"))]),
-        4:Group(""),
+        4:Group("", layout="monadwide", matches=[Match(wm_class=re.compile(r"^(firefox|brave)$"))], screen_affinity = 1),
         5:Group("", layout="monadtall"),
-        0:Group(""),
+        0:Group("", layout="monadthreecol", screen_affinity = 0),
         }
 
 groups = [__groups[i] for i in __groups]
@@ -337,7 +338,7 @@ screens = [
                 widget.TextBox(" 󰣇 ",
                                name= "Sistema", 
                                fontsize = 34,
-                               foreground=colors[0],
+                               foreground="#3ADE01", #colors[0],
                                margin_x=0,
                                margin_y=0,
                                padding_y=6,
@@ -400,7 +401,23 @@ screens = [
                         background=colors[1],
                         icon_size=20
                 ),
-                texto(" 󰍛 "),
+                separador(),
+#                texto(" 󰚰 "),
+#                                widget.CheckUpdates(
+#                        distro = 'Arch',
+#                        custom_command="checkupdates",
+#                        background=colors[1],
+#                        foreground=colors[2],
+#                        update_interval=60,
+#                        colour_have_updates="00ff00",
+#                        colour_no_updates="ff5500",
+#                        no_update_string='No Updates',
+#                        display_format='Updates --> {updates}',
+#                        padding=10,
+#                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
+#                        execute="st -e pacman -Syyu",
+#                        ),
+                separador(),
                 texto(" 󰃰 "),
                 widget.Clock(
                         foreground=colors[2],

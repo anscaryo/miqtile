@@ -1,0 +1,5 @@
+#archivo a ignorar
+config.backup
+/copias
+__pycache__/
+script/picom/old_picom.conf

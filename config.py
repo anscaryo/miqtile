@@ -192,7 +192,7 @@ keys = [
     #),
 #   Aplicaciones:
     Key([mod, "shift"], "Return", lazy.spawn("thunar"), desc="Lanza el administrador de archivos"),
-#    Key([mod], "x", lazy.cmd_spawn("/usr/bin/archlinux-logout"), desc="Lanza el menu para cerrar seison de arcolinux"),
+    Key([mod], "x", lazy.spawn("archlinux-logout"), desc="Lanza el menu para cerrar seison de arcolinux"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Lanza la terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),

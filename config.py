@@ -104,7 +104,8 @@ def separador():
             )
 
 
-
+def call_rofi(qtile):
+    qtile.cmd_spawn('rofi -i -show drun -modi drun -show-icons')
 #-----------------------------------------------------------------------
 #   Asignación de teclas
 #-----------------------------------------------------------------------
@@ -335,17 +336,28 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.TextBox(" 󰣇 ",
-                               name= "Sistema", 
-                               fontsize = 34,
-                               foreground="#3ADE01", #colors[0],
-                               margin_x=0,
-                               margin_y=0,
-                               padding_y=6,
-                               padding_x=5,
-                               background=b_ground),                
+                widget.Image(
+                    filename="~/.config/qtile/archlinux.png",
+                    background=colors[1],
+                    foreground=colors[2],
+                    mouse_callbacks={'Button1':lambda:qtile.cmd_spawn("rofi -show drun")}
+                    ),
+
+#-------   Cambio el logo de arch en verde por una imagen de archlinux.
+#                widget.TextBox(" 󰣇 ",
+#                               name= "Sistema", 
+#                               fontsize = 34,
+#                               foreground="#3ADE01", #colors[0],
+#                               margin_x=0,
+#                               margin_y=0,
+#                               padding_y=6,
+#                               padding_x=5,
+#                               background=b_ground,
+#                               mouse_callbacks={'Button1':lambda : qtile.cmd_spawn("rofi -i -show drun -modi drun -show-icons")}),                                
+#-------
+                separador(),
                 widget.GroupBox(font="FontAwesome",
-                                fontsize=14,
+                                fontsize=18,
                                 margin_x=0,
                                 margin_y=0,
                                 padding_y=6,
@@ -395,6 +407,8 @@ screens = [
                         border_color = colors[1],
                         padding = 0,
                         line_width = 1,
+                        mouse_callbacks={'Button1':lambda:qtile.spawn('alacritty -e btop')}
+
                         ),
                 widget.Systray(
                         foreground=colors[2],
@@ -402,7 +416,20 @@ screens = [
                         icon_size=20
                 ),
                 separador(),
-#                texto(" 󰚰 "),
+#                texto(" 󰚰 ",
+                widget.TextBox(" 󰚰 ",
+                               name= "Update", 
+                               font="FontAwesome",
+                               foreground=colors[3], #"fba922",
+                               background=colors[1], #"#2f343f",
+                               pading=0,
+                               fontsize=16,
+                               mouse_callbacks={'Button1': lambda : qtile.cmd_spawn('alacritty -e sudo pacman -Syyu')}),
+#                widget.pacman(
+#                        update_interval=60,
+#                        background=colors[1],
+#                        foreground=colors[2]
+#                        ),
 #                                widget.CheckUpdates(
 #                        distro = 'Arch',
 #                        custom_command="checkupdates",
@@ -456,7 +483,7 @@ screens = [
     Screen(
         top=bar.Bar([
             widget.GroupBox(font="FontAwesome",
-                                fontsize=14,
+                                fontsize=18,
                                 margin_x=0,
                                 margin_y=0,
                                 padding_y=6,
@@ -469,6 +496,7 @@ screens = [
                                 this_current_screen_border = colors[8],
                                 foreground=f_ground,
                                 background=b_ground,),
+            separador(),
             window_name(),
             layout_actual(),
             widget.Clock(
@@ -492,8 +520,7 @@ screens = [
                          border_width = 1,
                          line_width = 1,
                          core = "all",
-                         type = "box"
-                       ),
+                         type = "box"                       ),
             ], 30),
         )
     ]

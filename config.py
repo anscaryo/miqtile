@@ -337,7 +337,7 @@ screens = [
         top=bar.Bar(
             [
                 widget.Image(
-                    filename="~/.config/qtile/archlinux.png",
+                    filename="~/.config/qtile/imagen/archlinux.png",
                     background=colors[1],
                     foreground=colors[2],
                     mouse_callbacks={'Button1':lambda:qtile.cmd_spawn("rofi -show drun")}
@@ -458,12 +458,19 @@ screens = [
                 #widget.Systray(),
                 #widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 # texto(" 󰩈 "),
-                widget.QuickExit(
-                        fontsize = 14,
-                        default_text=' 󰩈 ',
-                        foreground=colors[2],
-                        background=colors[1]
-                ),
+                widget.Image(
+                    filename="~/.config/qtile/imagen/halt_orange.png",
+                    background=colors[1],
+                    size=18,
+                    foreground=colors[2],
+                    mouse_callbacks={'Button1':lambda:qtile.cmd_spawn("archlinux-logout")}
+                    ),
+                #widget.QuickExit(
+                #        fontsize = 14,
+                #        default_text=' 󰩈 ',
+                #        foreground=colors[2],
+                #        background=colors[1]
+                #),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders

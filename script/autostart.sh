@@ -12,5 +12,5 @@ cbatticon -u 5 &
 #screenout.sh &
 xrandr --output Virtual1  --mode 1920x1080+0+0 &
 xrandr --output Virtual2  --mode 1920x1080 --rotate left &
-conky &
-#(conky -c $HOME/.config/qtile/script/system-overwiew) &
+#conky &
+(conky -c $HOME/.config/qtile/script/conky/conky.conf) &

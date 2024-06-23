@@ -4,4 +4,5 @@ config.backup
 __pycache__/
 script/picom/old_picom.conf
 gpt_config.py
+config_arco.py
 
